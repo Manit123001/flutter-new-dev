@@ -13,4 +13,9 @@ class UserApiResponse {
       age: map['age'] ?? '',
     );
   }
+
+  
+
+  @override
+  String toString() => 'UserApiResponse(name: $name, age: $age)';
 }

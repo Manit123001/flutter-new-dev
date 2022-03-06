@@ -13,24 +13,36 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         title: Text("Home Title Hello"),
       ),
-      body: Column(
-        children: [
-          Consumer<HomeViewModel>(builder: (context, viewModel, child) {
-            return Text((viewModel.getName() != null) ? "${viewModel.getName()}" : "Hello");
-          }),
-          ElevatedButton(
-            onPressed: () {
-              viewModel.fetchData();
-            },
-            child: Text("fetch"),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              viewModel.goTo();
-            },
-            child: Text("go to about"),
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Consumer<HomeViewModel>(builder: (context, viewModel, child) {
+              return Text((viewModel.getUser.hasUser)
+                  ? "name: ${viewModel.getUser.name}, age: ${viewModel.getUser.age}"
+                  : "Hello World");
+            }),
+            ElevatedButton(
+              onPressed: () {
+                viewModel.fetchData();
+              },
+              child: Text("fetch"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                viewModel.fetchUseCaseData();
+              },
+              child: Text("fetch usecase"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                viewModel.goTo();
+              },
+              child: Text("go to about"),
+            )
+          ],
+        ),
       ),
     );
   }
